@@ -57,7 +57,7 @@ df['tot_calories'] = df.groupby(['elf'])['calories'].transform('sum')
 df_max = df['tot_calories'].max()
 
 ## Find which elf carries the most calories
-max_elf = df['elf'][df['tot_calories']==74394].unique()
+max_elf = df['elf'][df['tot_calories']==df_max].unique()
 
 ## This elf carries how many calories respectively 
 max_elf_calories = df['calories'][df['tot_calories']==df_max].unique()
