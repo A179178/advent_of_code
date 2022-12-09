@@ -60,7 +60,7 @@ df_max = df['tot_calories'].max()
 max_elf = df['elf'][df['tot_calories']==74394].unique()
 
 ## This elf carries how many calories respectively 
-max_elf_calories = df['calories'][df['tot_calories']==74394].unique()
+max_elf_calories = df['calories'][df['tot_calories']==df_max].unique()
 
 ## Print results
 print('The', +max_elf, 'carries the most calories. \n This elf carries', +max_elf_calories, '.\n', 'Total calories is', +df_max)
