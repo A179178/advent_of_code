@@ -65,3 +65,9 @@ max_elf_calories = df['calories'][df['tot_calories']==df_max].unique()
 ## Print results
 print('The', +max_elf, 'carries the most calories. \n This elf carries', +max_elf_calories, '.\n', 'Total calories is', +df_max)
 
+## Rank by total calories
+df['rank'] = df['tot_calories'].rank(ascending=0,method='dense')
+
+## Find out total calories top 3 elves carry
+top3_tot_calories = df[df['rank']<4]['calories'].sum()
+print('Top 3 elves carry' +top3_tot_calories 'calories!')
