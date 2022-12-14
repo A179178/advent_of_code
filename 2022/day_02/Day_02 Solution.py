@@ -1,36 +1,13 @@
 
-# coding: utf-8
-
-# In[1]:
-
-
 ## Day 2 Solution
-
-
-# In[2]:
-
 
 ### Import packages
 import pandas as pd
 import numpy as np
 
-
-# In[29]:
-
-
 ### Import Input file 
 input_file = np.loadtxt('U:\Test\Input_day2.txt', dtype='str', delimiter = " ", unpack=True)
 opponent, response = input_file[::]
-
-
-# In[31]:
-
-
-response[0:10]
-
-
-# In[32]:
-
 
 ## Part 1
 
@@ -40,15 +17,9 @@ response_df = pd.DataFrame(data = response, columns = ['response'])
 df = pd.concat([opponent_df,response_df],axis=1)
 
 
-# In[34]:
-
-
 ### create a column to indicate the score I could get based on the shape I choose
 response_score_map = {'X' : 1, 'Y' : 2, 'Z' : 3}
 df['response_score'] = df['response'].map(response_score_map)
-
-
-# In[38]:
 
 
 ### write down the game rule and socres I could get of each result
@@ -79,30 +50,17 @@ conditionlist = [
 resultlist = [6,3,0]
 
 
-# In[39]:
-
-
 ### create a column to indicate the socre I could get based on the results
 df['result_score'] = np.select(conditionlist, resultlist, default=0)
-
-
-# In[41]:
 
 
 ### create a column to get add up scores of shape and scores from results
 df['total_score'] = df['response_score'] + df['result_score']
 
 
-# In[47]:
-
-
 ### get final total score
 final_score = df['total_score'].sum()
 print('If everything goes exactly according to the strategy guide, my total score would be', +final_score)
-
-
-# In[50]:
-
 
 ## Part 2
 result_df = pd.DataFrame(data = response, columns = ['result'])
@@ -111,9 +69,6 @@ df2 = pd.concat([opponent_df,result_df],axis=1)
 ### create a column to indicate the score I could get based on results
 result_score_map = {'X' : 0, 'Y' : 3, 'Z' : 6}
 df2['result_score'] = df2['result'].map(result_score_map)
-
-
-# In[51]:
 
 
 ### write down the game rule and socres I could get of each shape
@@ -143,15 +98,8 @@ conditionlist2 = [
 
 responselist = [1,2,3]
 
-
-# In[52]:
-
-
 ### create a column to indicate the socre I could get based on the response
 df2['response_score'] = np.select(conditionlist2, responselist, default=0)
-
-
-# In[54]:
 
 
 ### create a column to get add up scores of shape and scores from results
